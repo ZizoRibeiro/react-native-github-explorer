@@ -6,11 +6,18 @@ import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import Repository from 'components/Repository';
 
+/* Redux */
+import { connect } from 'react-redux';
+
 import styles from './styles';
 
-export default class Favorites extends Component {
+class Favourites extends Component {
   static navigationOptions = {
-    title: 'Meus Favoritos',
+    title: 'My Favourites',
+  };
+
+  static propTypes = {
+    favourites: PropTypes.arrayOf(Repository.propTypes.repository).isRequired,
   };
 
   render() {
@@ -19,11 +26,16 @@ export default class Favorites extends Component {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <Repository style={{ marginBottom: 20 }} />
-        <Repository style={{ marginBottom: 20 }} />
-        <Repository style={{ marginBottom: 20 }} />
-        <Repository style={{ marginBottom: 20 }} />
+        { this.props.favourites.map(repository => (
+          <Repository key={repository.id} repository={repository} />
+        )) }
       </ScrollView>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  favourites: state.favourites,
+});
+
+export default connect(mapStateToProps)(Favourites);
