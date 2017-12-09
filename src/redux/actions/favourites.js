@@ -1,18 +1,8 @@
-import api from 'services/api';
-
-function addFavourite(repository) {
+export function addFavourite(repositoryName) {
   return {
-    type: 'ADD_FAVOURITE',
+    type: 'SEARCH_REPOSITORY',
     payload: {
-      repository,
+      repositoryName,
     },
-  };
-}
-
-export function searchAndAddRepository(repositoryName) {
-  return async (dispatch) => {
-    const response = await api.get(`/repos/${repositoryName}`);
-
-    dispatch(addFavourite(response.data));
   };
 }
