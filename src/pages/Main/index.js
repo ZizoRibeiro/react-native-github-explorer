@@ -24,7 +24,7 @@ class Main extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
-    searchAndAddRepository: PropTypes.func.isRequired,
+    addFavourite: PropTypes.func.isRequired,
     favourites: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
     })).isRequired,
@@ -35,7 +35,9 @@ class Main extends Component {
   };
 
   addNewFavourite = () => {
-    this.props.searchAndAddRepository(this.state.newRepositoryName);
+    this.props.addFavourite(this.state.newRepositoryName);
+
+    this.setState({ newRepositoryName: '' });
   };
 
   render() {
