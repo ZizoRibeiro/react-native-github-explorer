@@ -79,14 +79,14 @@ export default class Repository extends Component {
             style={styles.leftButton}
             onPress={() => {}}
           >
-            Gostei!
+            I Like it!
           </Button>
           <Button
             color="danger"
             style={styles.rightButton}
             onPress={() => {}}
           >
-            Hoje não
+            Not yet
           </Button>
         </View>
       </View>

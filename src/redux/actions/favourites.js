@@ -1,6 +1,8 @@
+import { SEARCH } from 'redux/types/favourites';
+
 export function addFavourite(repositoryName) {
   return {
-    type: 'SEARCH_REPOSITORY',
+    type: SEARCH,
     payload: {
       repositoryName,
     },
