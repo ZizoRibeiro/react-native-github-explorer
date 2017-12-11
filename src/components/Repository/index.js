@@ -7,9 +7,15 @@ import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import Button from 'components/Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/* Redux */
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { removeFavourite } from 'redux/modules/favourites';
+
 import styles from './styles';
 
-export default class Repository extends Component {
+export class Repository extends Component {
   static propTypes = {
     repository: PropTypes.shape({
       id: PropTypes.number,
@@ -73,23 +79,15 @@ export default class Repository extends Component {
           </View>
         </View>
 
-        <View style={styles.buttonsContainer}>
-          <Button
-            color="success"
-            style={styles.leftButton}
-            onPress={() => {}}
-          >
-            I Like it!
-          </Button>
-          <Button
-            color="danger"
-            style={styles.rightButton}
-            onPress={() => {}}
-          >
-            Not yet
-          </Button>
+        <View style={styles.buttonContainer}>
+          <Button color="danger" onPress={() => this.props.removeFavourite(repository.id)}>Delete</Button>
         </View>
-      </View>
+      </View>    
     );
   }
 }
+
+const mapDispathToProps = dispatch =>
+  bindActionCreators({ removeFavourite }, dispatch);
+
+export default connect(null, mapDispathToProps)(Repository);
